@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 const app = express();
+const jobRoutes = require("./src/routes/jobRoutes");
 
 app.use(bodyParser.json()); // application/json
 
@@ -18,6 +19,8 @@ app.use((req, res, next) => {
 
   next();
 });
+
+app.use("/jobs", jobRoutes);
 
 app.use((error, req, res, next) => {
   console.log(error);
