@@ -1,4 +1,5 @@
 const express = require("express");
+require("dotenv").config();
 
 const bodyParser = require("body-parser");
 
@@ -30,9 +31,7 @@ app.use((error, req, res, next) => {
 });
 
 mongoose
-  .connect(
-    "mongodb+srv://lakicigor9:l0b7jRoW9GvQ2Q6P@freelance-cluster.ox7xdco.mongodb.net/?retryWrites=true&w=majority&appName=freelance-cluster"
-  )
+  .connect(process.env.MONGODB_URI)
   .then((res) => {
     console.log("Connected to DB");
     return app.listen(8080);
