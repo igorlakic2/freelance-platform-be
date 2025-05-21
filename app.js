@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 
 const app = express();
 const jobRoutes = require("./src/routes/jobRoutes");
+const authRoutes = require("./src/routes/authRoutes");
 
 app.use(bodyParser.json()); // application/json
 
@@ -22,12 +23,15 @@ app.use((req, res, next) => {
 });
 
 app.use("/jobs", jobRoutes);
+app.use("/auth", authRoutes);
 
 app.use((error, req, res, next) => {
   console.log(error);
   const status = error.statusCode;
   const message = error.message;
-  res.status(status).json({ message });
+  const data = error.data;
+
+  res.status(status).json({ message, data });
 });
 
 mongoose
