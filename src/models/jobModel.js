@@ -12,7 +12,14 @@ const jobSchema = new Schema({
     required: true,
   },
   technologies: {
-    type: [String],
+    type: [
+      {
+        value: {
+          type: String,
+          required: true,
+        },
+      },
+    ],
     required: true,
     validate: {
       validator: (v) => v.length > 0,
