@@ -11,6 +11,14 @@ const jobSchema = new Schema({
     type: String,
     required: true,
   },
+  technologies: {
+    type: [String],
+    required: true,
+    validate: {
+      validator: (v) => v.length > 0,
+      message: "At least one technology is required.",
+    },
+  },
 });
 
 module.exports = mongoose.model("Job", jobSchema);
