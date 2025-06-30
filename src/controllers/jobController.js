@@ -18,11 +18,12 @@ exports.getJobs = async (req, res, next) => {
 
 exports.addJob = async (req, res, next) => {
   try {
-    const { name, description } = req.body;
+    const { name, description, technologies } = req.body;
 
     const job = new Job({
       name,
       description,
+      technologies,
     });
 
     await job.save();
@@ -63,11 +64,12 @@ exports.deleteJob = async (req, res, next) => {
 exports.updateJob = async (req, res, next) => {
   try {
     const jobId = req.params.jobId;
-    const { name, description } = req.body;
+    const { name, description, technologies } = req.body;
 
     const job = await Job.findById(jobId);
     job.name = name;
     job.description = description;
+    job.technologies = technologies;
 
     await job.save();
 

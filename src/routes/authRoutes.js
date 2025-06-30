@@ -18,7 +18,10 @@ router.put(
         });
       })
       .normalizeEmail(),
-    body("password").trim().isLength({ min: 5 }),
+    body("password")
+      .trim()
+      .isLength({ min: 5 })
+      .withMessage("Minimum length is 5"),
     body("firstName").trim().not().isEmpty(),
     body("lastName").trim().not().isEmpty(),
     body("role")
