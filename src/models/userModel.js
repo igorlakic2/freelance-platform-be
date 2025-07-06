@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const ROLES = require("../constants/roles");
 
 const Schema = mongoose.Schema;
 
@@ -21,7 +22,7 @@ const usersSchema = new Schema({
   },
   role: {
     type: String,
-    enum: ["FREELANCER", "CLIENT"],
+    enum: Object.values(ROLES),
     required: true,
   },
 });
