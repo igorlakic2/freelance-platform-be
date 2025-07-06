@@ -52,7 +52,7 @@ exports.login = async (req, res, next) => {
     }
 
     const token = jwt.sign(
-      { email: user.email, userId: user._id.toString() },
+      { email: user.email, userId: user._id.toString(), role: user.role },
       "fpsecret",
       { expiresIn: "5h" }
     );
